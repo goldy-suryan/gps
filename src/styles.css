@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.location-form {
+    padding-top: 30px;
+}
+
+.img-responsive {
+    min-height: 100px;
+    max-height: 100px;
+}
+
+.top-mar {
+    margin-top: 20px!important;
+    max-height: 100px;
+}
+
+.cursor {
+    cursor: pointer;
+}
