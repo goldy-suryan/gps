@@ -17,6 +17,8 @@ export class UserLocationComponent implements OnInit, AfterViewInit {
   public location: any;
   public coordinates: any;
   public restaurants;
+  public restId: number;
+  public restDetail: any;
   @ViewChild('myModal') myModal: ElementRef;
 
   constructor(private service: LocationService) { }
@@ -26,7 +28,7 @@ export class UserLocationComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos)=>this.setPosition(pos));
+      navigator.geolocation.getCurrentPosition((pos) => this.setPosition(pos));
     } else {
       console.log("Not supported in the browser");
     }
@@ -34,26 +36,33 @@ export class UserLocationComponent implements OnInit, AfterViewInit {
 
   setPosition(position) {
     this.location = position.coords;
- }
+  }
 
- getCoords() {
-   this.service.getLocation(this.coordinates)
-   .subscribe(
-     data =>this.service.getRestaurants(data.location_suggestions[0]).subscribe(
-       restaurants => this.restaurants = restaurants.restaurants,
-       err => console.log(err)
-     ),
-     err => console.log(err)
-   )
-   console.log(this.restaurants)
- }
+  getCoords() {
+    this.service.getLocation(this.coordinates)
+      .subscribe(
+      data => this.service.getRestaurants(data.location_suggestions[0]).subscribe(
+        restaurants => this.restaurants = restaurants.restaurants,
+        err => console.log(err)
+      ),
+      err => console.log(err)
+      )
+    console.log(this.restaurants)
+  }
 
- open(id) {
-  $(this.myModal.nativeElement).modal('show');;
- }
+  open(id) {
+    for (var i = 0; i < this.restaurants.length; i++) {
+      this.restId = this.restaurants[i].restaurant.id;
+      if (id === this.restId) {
+        this.restDetail = this.restaurants[i].restaurant;
+        console.log(this.restDetail.average_cost_for_two);
+      }
+    }
+    $(this.myModal.nativeElement).modal('show');;
+  }
 
- close() {
-  $(this.myModal.nativeElement).modal('hide');
-}
+  close() {
+    $(this.myModal.nativeElement).modal('hide');
+  }
 
 }

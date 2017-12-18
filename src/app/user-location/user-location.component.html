@@ -26,27 +26,29 @@
 
         </a>
       </div>
-      <div class="modal fade" id="myModal" role="dialog" #myModal>
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" (click)="close()">&times;</button>
-              <h4 class="modal-title">Details</h4>
-            </div>
-            <div class="modal-body">
-              <p>{{ restaurant?.restaurant?.user_rating.aggregate_rating }}</p>
-              <p>{{ restaurant?.restaurant?.user_rating.rating_text }}</p>
-              <p>{{ restaurant?.restaurant?.user_rating.votes }}</p>
-
-              <h4>Address</h4>
-              <p>{{ restaurant?.restaurant?.location.address }}</p>
-              <p>{{ restaurant?.restaurant?.location.locality }}</p>
-              <p>{{ restaurant?.restaurant?.location.city }}</p>
-              <p>{{ restaurant?.restaurant?.location.latitude }}</p>
-              <p>{{ restaurant?.restaurant?.location.longitude }}</p>
-            </div>
-          </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" role="dialog" #myModal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close()">&times;</button>
+          <h4 class="modal-title">Details</h4>
         </div>
+        <div class="modal-body">
+          <h4><strong>Name: {{ restDetail?.name }}</strong></h4>
+          <h5><strong>User Rating:</strong> {{ restDetail?.user_rating?.aggregate_rating }}</h5>
+
+          <h3>Location</h3>
+          <p><strong>Address:</strong> {{ restDetail?.location?.address }}</p>
+          <p><strong>Locality:</strong> {{ restDetail?.location?.locality }}</p>
+          <p><strong>City:</strong> {{ restDetail?.location?.city }}</p>
+          <p><strong>Latitude:</strong> {{ restDetail?.location?.latitude }}</p>
+          <p><strong>Longitude:</strong> {{ restDetail?.location?.longitude }}</p>
+
+          <p><strong>Average Cost for 2 person:</strong> {{ restDetail?.average_cost_for_two }}</p>
+        </div>
+
       </div>
     </div>
   </div>

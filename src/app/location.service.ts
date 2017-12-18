@@ -28,6 +28,5 @@ export class LocationService {
     return this.http.get(this.url + "search?entity_type=subzone&lat=" + val.latitude + "&lon=" + val.longitude + "&sort=rating&order=desc", { headers: header})
     .map(res => res.json());
   }
-  // https://developers.zomato.com/api/v2.1/search?entity_type=subzone&lat=28.6618976&lon=77.2273958&sort=rating&order=desc
 
 }
